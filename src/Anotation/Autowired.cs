@@ -145,19 +145,8 @@ namespace Autofac.Annotation
                 return returnObj;
             }
 
-            var spelName = Name;
-            Service propertyService = null;
-            if (!string.IsNullOrEmpty(spelName))
-            {
-                // spel判断
-                spelName = Value.ResolveSpel(context, classType, spelName, autoConfigurationDetail).ToString();
-                propertyService = new KeyedService(spelName, memberType);
-            }
-            else
-            {
-                //如果指定Name查找
-                propertyService = new TypedService(memberType);
-            }
+            //如果指定Name查找
+            Service propertyService = new TypedService(memberType);
 
             if (Parameters != null && Parameters.Any() && Parameters.Last() is AutowiredParmeterStack AutowiredParmeter)
             {
@@ -187,16 +176,10 @@ namespace Autofac.Annotation
                 {
                     //success
                 }
-                else if (string.IsNullOrEmpty(spelName) &&
-                         context.TryResolveService(new KeyedService(fieldOrPropertyName, memberType), new Parameter[] { }, out returnObj))
-                {
-                    //success
-                }
             }
 
             if (returnObj == null && Required)
-                throw new DependencyResolutionException($"Autowire error,can not resolve class type:{classType.FullName}.{fieldOrPropertyName} "
-                                                        + (!string.IsNullOrEmpty(spelName) ? $",with key:[{spelName}]" : ""));
+                throw new DependencyResolutionException($"Autowire error,can not resolve class type:{classType.FullName}.{fieldOrPropertyName} ");
 
             return returnObj;
         }

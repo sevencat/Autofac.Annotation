@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.Json;
-using Microsoft.Extensions.Configuration.Xml;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -41,26 +40,6 @@ namespace Autofac.Annotation
             }
         }
 
-        /// <summary>
-        /// xml
-        /// </summary>
-        /// <param name="configFile"></param>
-        /// <returns></returns>
-        public static IConfiguration LoadXml(string configFile)
-        {
-            if (Configurations.TryGetValue(configFile, out var con))
-            {
-                return con;
-            }
-
-            using (var stream = File.OpenRead(configFile))
-            {
-                var provider = new EmbeddedConfigurationProvider<XmlConfigurationSource>(stream);
-                var config = new ConfigurationRoot(new List<IConfigurationProvider> { provider });
-                Configurations.TryAdd(configFile, config);
-                return config;
-            }
-        }
 
         /// <summary>
         /// LoadEmbedded
@@ -98,28 +77,14 @@ namespace Autofac.Annotation
                             Configurations.TryAdd(configFile, config);
                             return config;
                         }
-                        else if (configFile.ToLower().EndsWith(".xml"))
-                        {
-                            var provider = new EmbeddedConfigurationProvider<XmlConfigurationSource>(stream);
-                            var config = new ConfigurationRoot(new List<IConfigurationProvider> { provider });
-                            Configurations.TryAdd(configFile, config);
-                            return config;
-                        }
                         else
                         {
                             throw new NotSupportedException($"source file can not parse $`{configFile}`");
                         }
                     }
-                    else if (sourceType.Equals(MetaSourceType.JSON))
-                    {
-                        var provider = new EmbeddedConfigurationProvider<JsonConfigurationSource>(stream);
-                        var config = new ConfigurationRoot(new List<IConfigurationProvider> { provider });
-                        Configurations.TryAdd(configFile, config);
-                        return config;
-                    }
                     else
                     {
-                        var provider = new EmbeddedConfigurationProvider<XmlConfigurationSource>(stream);
+                        var provider = new EmbeddedConfigurationProvider<JsonConfigurationSource>(stream);
                         var config = new ConfigurationRoot(new List<IConfigurationProvider> { provider });
                         Configurations.TryAdd(configFile, config);
                         return config;
@@ -138,28 +103,14 @@ namespace Autofac.Annotation
                     Configurations.TryAdd(configFile, config);
                     return config;
                 }
-                else if (configFile.ToLower().EndsWith(".xml"))
-                {
-                    var provider = new EmbeddedConfigurationProvider<XmlConfigurationSource>(configFile);
-                    var config = new ConfigurationRoot(new List<IConfigurationProvider> { provider });
-                    Configurations.TryAdd(configFile, config);
-                    return config;
-                }
                 else
                 {
                     throw new NotSupportedException($"source file can not parse $`{configFile}`");
                 }
             }
-            else if (sourceType.Equals(MetaSourceType.JSON))
-            {
-                var provider = new EmbeddedConfigurationProvider<JsonConfigurationSource>(configFile);
-                var config = new ConfigurationRoot(new List<IConfigurationProvider> { provider });
-                Configurations.TryAdd(configFile, config);
-                return config;
-            }
             else
             {
-                var provider = new EmbeddedConfigurationProvider<XmlConfigurationSource>(configFile);
+                var provider = new EmbeddedConfigurationProvider<JsonConfigurationSource>(configFile);
                 var config = new ConfigurationRoot(new List<IConfigurationProvider> { provider });
                 Configurations.TryAdd(configFile, config);
                 return config;

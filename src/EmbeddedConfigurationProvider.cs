@@ -2,7 +2,6 @@
 using System.IO;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.Json;
-using Microsoft.Extensions.Configuration.Xml;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Primitives;
 
@@ -42,13 +41,6 @@ namespace Autofac.Annotation
                 jsonConfigurationSource.FileProvider = new PhysicalFileProvider(Path.GetDirectoryName(file));
                 jsonConfigurationSource.Path = Path.GetFileName(file);
                 jsonConfigurationSource.ReloadOnChange = true;
-            }
-            else if (source is XmlConfigurationSource xmlConfigurationSource)
-            {
-                xmlConfigurationSource.Optional = true;
-                xmlConfigurationSource.FileProvider = new PhysicalFileProvider(Path.GetDirectoryName(file));
-                xmlConfigurationSource.Path = Path.GetFileName(file);
-                xmlConfigurationSource.ReloadOnChange = true;
             }
 
             this._provider = (FileConfigurationProvider)source.Build(new ConfigurationBuilder());
