@@ -1,6 +1,7 @@
 # Autofac extras library for component registration via attributes
 
-支持netcore2.0 + framework4.6+
+支持netcore8
+去掉了表达式，修改为OptionAttribute，单纯只为了做配置项用
 
 # NUGET
 
