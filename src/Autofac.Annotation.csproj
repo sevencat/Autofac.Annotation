@@ -29,9 +29,10 @@
         <Version>4.4.5</Version>
         <AssemblyVersion>4.4.5.0</AssemblyVersion>
         <Authors>sevencat</Authors>
-        <PackageVersion>4.4.5</PackageVersion>
+        <PackageVersion>1.0.0</PackageVersion>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <TargetFrameworks>net5.0;net8.0</TargetFrameworks>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">

@@ -5,9 +5,12 @@ namespace Sample02;
 [Component]
 public class TestService
 {
-	[Value("testcnt",DefaultValue = 3)]
+	[Value("testcnt", DefaultValue = 3)]
 	private int Count;
-	
+
+	[Value("testcnt2")]
+	private List<int>? TestList;
+
 	public List<WeatherForecast> WeatherForCast()
 	{
 		var summaries = new[]
