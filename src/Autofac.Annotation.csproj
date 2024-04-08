@@ -6,7 +6,7 @@
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <AssemblyName>Autofac.Annotation</AssemblyName>
-        <PackageId>Autofac.Annotation.Sevencat</PackageId>
+        <PackageId>Sevencat.Autofac.Annotation</PackageId>
         <PackageTags>autofac spring aspect</PackageTags>
         <PackageReleaseNotes>autofac spring
             【AutoConfiguration】【Bean】【Component】【Value[支持SpEL表达式]】【PropertySource】【Aspect】【Pointcut切面】

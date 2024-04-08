@@ -12,7 +12,7 @@ private List<int>? TestList;
 
 # NUGET
 
-Install-Package Autofac.Annotation
+Install-Package Sevencat.Autofac.Annotation
 
 ## Document
 
