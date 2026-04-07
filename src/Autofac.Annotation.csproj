@@ -29,9 +29,9 @@
         <Version>4.4.5</Version>
         <AssemblyVersion>4.4.5.0</AssemblyVersion>
         <Authors>sevencat</Authors>
-        <PackageVersion>1.0.5</PackageVersion>
+        <PackageVersion>1.0.6</PackageVersion>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <TargetFrameworks>net6.0;net9.0;net10.0</TargetFrameworks>
+        <TargetFrameworks>net10.0;net6.0;net8.0</TargetFrameworks>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
 
@@ -48,7 +48,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Autofac" Version="8.4.0" />
+        <PackageReference Include="Autofac" Version="9.1.0" />
         <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.0" />
         <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
         <PackageReference Include="Castle.Core" Version="5.2.1" />
